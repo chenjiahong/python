@@ -28,7 +28,7 @@ Sub OpenFileInFolder(fol)
 	On Error Resume Next
 	Dim i
 	For Each i In fol.Files
-	If LCase(fso.GetExtensionName(i)) = "pptx" Then
+	If LCase(fso.GetExtensionName(i)) = "pptx" or LCase(fso.GetExtensionName(i)) = "ppt" Then
 	dim absName
 	absName	= fso.GetAbsolutePathName(i)
 	OpenPresentaion absName
