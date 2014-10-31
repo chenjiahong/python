@@ -46,7 +46,7 @@ Sub OpenPresentaion(absName)
 	if currPres is nothing Then
 	'MsgBox absName & " open fialed!"
 	resFile.writeLine absName
-	return
+	exit Sub
 	end if	
 	a = a + 1
 	currPres.Close
