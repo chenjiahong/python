@@ -1,12 +1,15 @@
-#coding=utf-8
+# coding=utf-8
 import urllib2  
 import string
 import platform;
-import win32api, win32con, win32gui
 import time
 import copy
 
 systemName = platform.system(); 
+if systemName == 'Windows':
+	import win32api, win32con, win32gui
+#elif systemName == "Linux":
+#	import 
 pythonVersion = platform.python_version();
 uname = platform.uname();
 print "System and machine: %s, Python version: %s"%(uname, pythonVersion);
@@ -45,7 +48,10 @@ while 1:
 		print "%d. %s HK%d current price: %s" %(i, timeStr, stockNumList[sourceIdx], priceStr)
 		currPrice = string.atof(priceStr)
 		if currPrice >= highPrice[sourceIdx] or currPrice <= lowPrice[sourceIdx]:
-			win32api.MessageBox(0, priceStr, "current price", win32con.MB_SETFOREGROUND)
+			if systemName == "Windows":
+				win32api.MessageBox(0, priceStr, "current price", win32con.MB_SETFOREGROUND)
+			elif systemName == "Linux":
+				QMessageBox.information(NULL, tr("current price"), priceStr);
 		#finishTime = time.localtime()
 		#print "cost time: %d s" %(finishTime.tm_sec - currtime.tm_sec)
 
