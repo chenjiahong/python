@@ -8,8 +8,9 @@ import copy
 systemName = platform.system(); 
 if systemName == 'Windows':
 	import win32api, win32con, win32gui
-#elif systemName == "Linux":
-#	import 
+elif systemName == "Linux":
+#	import tkMessageBox
+	import gtk
 pythonVersion = platform.python_version();
 uname = platform.uname();
 print "System and machine: %s, Python version: %s"%(uname, pythonVersion);
@@ -51,7 +52,11 @@ while 1:
 			if systemName == "Windows":
 				win32api.MessageBox(0, priceStr, "current price", win32con.MB_SETFOREGROUND)
 			elif systemName == "Linux":
-				QMessageBox.information(NULL, tr("current price"), priceStr);
+#				tkMessageBox.showinfo("current price", priceStr)
+				dialog = gtk.MessageDialog(message_format = priceStr)
+				dialog.set_title("current price")
+				dialog.run()
+				dialog.destroy()
 		#finishTime = time.localtime()
 		#print "cost time: %d s" %(finishTime.tm_sec - currtime.tm_sec)
 
